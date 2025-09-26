@@ -56,28 +56,28 @@ bool perulanganProgram() {
 }
 
 void main() {
-  final kalkulator = Kalkulator();
-
+  
   do {
     print('=== Aplikasi Kalkulator Sederhana ===');
     var angka1 = masukkanAngka('Masukkan bilangan pertama  : ');
     var angka2 = masukkanAngka('Masukkan bilangan kedua : ');
 
-    String pilihan = pilihOperasi();
+    final kalkulator = Kalkulator(angka1, angka2);
 
+    String pilihan = pilihOperasi();
     try {
       switch (pilihan) {
         case '1':
-          print('Hasil: ${kalkulator.tambah(angka1, angka2)}');
+          print('Hasil: ${kalkulator.tambah()}');
           break;
         case '2':
-          print('Hasil: ${kalkulator.kurang(angka1, angka2)}');
+          print('Hasil: ${kalkulator.kurang()}');
           break;
         case '3':
-          print('Hasil: ${kalkulator.kali(angka1, angka2)}');
+          print('Hasil: ${kalkulator.kali()}');
           break;
         case '4':
-          print('Hasil: ${kalkulator.bagi(angka1, angka2)}');
+          print('Hasil: ${kalkulator.bagi()}');
           break;
       }
     } catch (e) {
