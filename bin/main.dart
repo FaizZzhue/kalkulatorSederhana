@@ -4,13 +4,13 @@ import 'kalkulator.dart';
 double masukkanAngka(String pesan) {
   while (true) {
     stdout.write(pesan);
-    final input = stdin.readLineSync();
-    if (input == null || input.trim().isEmpty) {
+    final angka = stdin.readLineSync();
+    if (angka == null || angka.trim().isEmpty) {
       print('Input tidak boleh kosong, Masukkan Ulang!');
       continue;
     }
     try {
-      return double.parse(input);
+      return double.parse(angka);
     } catch (_) {
       print('Input tidak valid, Masukkan Ulang!');
     }
@@ -19,12 +19,12 @@ double masukkanAngka(String pesan) {
 
 String pilihOperasi() {
   while (true) {
-    print("\nPilih operasi:");
+    print("\nPilih operasi :");
     print("[1] Tambah");
     print("[2] Kurang");
     print("[3] Kali");
     print("[4] Bagi");
-    stdout.write("Pilihan (1-4): ");
+    stdout.write("Pilihan (1-4) : ");
     final pilihan = stdin.readLineSync();
 
     if (pilihan == null || pilihan.trim().isEmpty) {
@@ -40,13 +40,26 @@ String pilihOperasi() {
   }
 }
 
+bool perulanganProgram() {
+  while (true) {
+    stdout.write('\nApakah ingin menghitung lagi? (Y/T) : ');
+    final jawab = stdin.readLineSync();
+    if (jawab == null || jawab.trim().isEmpty) {
+      print('Masukan tidak boleh kosong.');
+      continue;
+    }
+    final lanjut = jawab.trim().toUpperCase();
+    if (lanjut == 'Y') return true;
+    if (lanjut == 'T') return false;
+    print('Masukkan Y untuk Ya atau T untuk Tidak.');
+  }
+}
+
 void main() {
   final kalkulator = Kalkulator();
-  bool lanjut = true;
 
-  while (lanjut) {
+  do {
     print('=== Aplikasi Kalkulator Sederhana ===');
-
     var angka1 = masukkanAngka('Masukkan bilangan pertama  : ');
     var angka2 = masukkanAngka('Masukkan bilangan kedua : ');
 
@@ -70,11 +83,7 @@ void main() {
     } catch (e) {
       print(e);
     }
-
-    stdout.write('\nApakah ingin menghitung lagi? (Y/T) : ');
-    final jawab = stdin.readLineSync()?.toUpperCase();
-    lanjut = jawab == 'Y';
-  }
+  } while (perulanganProgram());
 
   print('Program selesai.');
 }
